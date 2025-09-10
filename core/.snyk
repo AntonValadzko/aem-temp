@@ -1,7 +1,7 @@
 version: v1.25.0
 ignore:
   'SNYK-JAVA-COMFASTERXMLJACKSONCORE-450917':
-    - 'com.adobe.acs:acs-aem-commons-bundle':
+    - '/com.adobe.acs/acs-aem-commons-bundle/6.14.0':
         reason: waiting ACS commons upgare to fix
         expires: '2028-12-29T16:10:16.946Z'
   'SNYK-JAVA-ORGAPACHECOMMONS-*':
