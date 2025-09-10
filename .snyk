@@ -1,6 +1,6 @@
 version: v1.25.0
 ignore:
-  'SNYK-JAVA-COMFASTERXMLJACKSONCORE-450917':
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-450917:
     - '*':
         reason: waiting ACS commons upgare to fix
         expires: 2025-12-31T23:59:59Z
