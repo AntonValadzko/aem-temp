@@ -4,7 +4,7 @@ ignore:
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: waiting ACS commons upgare to fix
         expires: '2028-12-29T16:10:16.946Z'
-  'SNYK-JAVA-ORGAPACHECOMMONS-10734078':
+  'SNYK-JAVA-ORGAPACHECOMMONS-*':
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: waiting ACS commons upgare to fix
         expires: '2028-12-29T16:10:16.946Z'
