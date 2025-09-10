@@ -1,22 +1,22 @@
 version: v1.25.0
 ignore:
-  'SNYK-JAVA-COMFASTERXMLJACKSONCORE':
-    - 'com.adobe.acs:acs-aem-commons-bundle':
-        reason: waiting ACS commons upgare to fix
-        expires: '2028-12-29T16:10:16.946Z'
-  'SNYK-JAVA-COMAMAZONAWS-2952700':
-    - 'com.adobe.acs:acs-aem-commons-bundle':
-        reason: Waiting ACS Commons upgare to fix
-        expires: '2026-01-01T12:00:00.000Z'
-  'SNYK-JAVA-COMMONSBEANUTILS-10259368':
-    - 'com.adobe.acs:acs-aem-commons-bundle':
-        reason: Waiting ACS Commons upgare to fix
-        expires: '2026-01-01T12:00:00.000Z'
-  'SNYK-JAVA-COMMONSLANG-10734077':
-    - 'com.adobe.acs:acs-aem-commons-bundle':
-        reason: Waiting ACS Commons upgare to fix
-        expires: '2026-01-01T12:00:00.000Z'
   'SNYK-JAVA-CHQOSLOGBACK-1726923':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-CHQOSLOGBACK-6094942':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.
+  'SNYK-JAVA-CHQOSLOGBACK-6094943':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-CHQOSLOGBACK-6097492':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-CHQOSLOGBACK-6097493':
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: Waiting ACS Commons upgare to fix
         expires: '2026-01-01T12:00:00.000Z'
@@ -29,6 +29,38 @@ ignore:
         reason: Waiting ACS Commons upgare to fix
         expires: '2026-01-01T12:00:00.
   'SNYK-JAVA-CHQOSLOGBACK-8539867':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMAMAZONAWS-2952700':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMFASTERXMLJACKSONCORE':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: waiting ACS commons upgare to fix
+        expires: '2028-12-29T16:10:16.946Z'
+  'SNYK-JAVA-COMMONSBEANUTILS-10259368':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMMONSLANG-10734077':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMFASTERXMLJACKSONDATAFORMAT-1047329':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-COMMONSHTTPCLIENT-30083':
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: Waiting ACS Commons upgare to fix
         expires: '2026-01-01T12:00:00.000Z'
@@ -76,6 +108,26 @@ ignore:
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: Waiting ACS Commons upgare to fix
         expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-ORGAPACHESLING-30730':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-ORGAPACHESLING-30732':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-ORGAPACHESLING-31459':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-ORGAPACHESLING-2934398':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
+  'SNYK-JAVA-ORGAPACHESLING-3330244':
+    - 'com.adobe.acs:acs-aem-commons-bundle':
+        reason: Waiting ACS Commons upgare to fix
+        expires: '2026-01-01T12:00:00.000Z'
   'SNYK-JAVA-ORGAPACHESLING-5535052':
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: Waiting ACS Commons upgare to fix
@@ -116,4 +168,3 @@ ignore:
     - 'com.adobe.acs:acs-aem-commons-bundle':
         reason: Waiting ACS Commons upgare to fix
         expires: '2026-01-01T12:00:00.000Z'
-
