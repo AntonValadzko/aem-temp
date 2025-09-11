@@ -1,4 +1,3 @@
----
 version: v1.25.0
 ignore:
   SNYK-JAVA-CHQOSLOGBACK-1726923:
