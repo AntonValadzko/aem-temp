@@ -100,8 +100,8 @@ public final class LocationAdminUtil {
         final String path = page.getPath() + "/test/config";
 
         Resource liveSyncConfig = resolver.getResource(path);
-        if (Objects.nonNull(liveSyncConfig)) {
-            liveSyncConfig.getResourceResolver().delete(liveSyncConfig);
+        if (Objects.nonNull(liveSyncConfig) && liveSyncConfig.isResourceType("345")) {
+            resolver.delete(liveSyncConfig);
         }
     }
 
