@@ -1,6 +1,5 @@
 package com.mysite.core.schedulers;
 
-import com.adobe.acs.commons.util.ResourceUtil;
 import com.adobe.granite.ui.components.ds.DataSource;
 import com.adobe.granite.ui.components.ds.EmptyDataSource;
 import com.day.cq.commons.Language;
@@ -16,6 +15,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 
 import javax.jcr.query.Query;
@@ -89,7 +89,7 @@ public final class LocationAdminUtil {
 
     // Utility method: Validate paths
     private boolean isValidPath(String path) {
-        return (path.startsWith("/content/") || path.startsWith("/apps/"))
+        return (Pattern.matches("^/content/avis(/.*)?$", path))
                 && !path.contains("..") // Prevent path traversal
                 && !path.contains("//") // Prevent duplicate slashes
                 && !path.contains("@")  // Prevent invalid characters
@@ -97,11 +97,14 @@ public final class LocationAdminUtil {
     }
 
     private void clearCopyPage(Page page, ResourceResolver resolver) throws PersistenceException, WCMException {
-        final String path = page.getPath() + "/test/config";
+        final String path = (page.getPath()).replaceAll(ALLOWED_PATH_REGEXP, "");
 
-        Resource liveSyncConfig = resolver.getResource(path);
-        if (Objects.nonNull(liveSyncConfig) && liveSyncConfig.isResourceType("345")) {
-            resolver.delete(liveSyncConfig);
+        //Resource liveSyncConfig = resolver.resolve(path);
+        if (path.equals("/content/test")) {
+            Resource liveSyncConfig = resolver.getResource("/content/test");
+            if (liveSyncConfig != null) {
+                resolver.delete(resolver.getResource("/content/test"));
+            };
         }
     }
 
@@ -113,6 +116,10 @@ public final class LocationAdminUtil {
 
     private enum PathType {
         DAM_ROOT, BRAND_ROOT, ADMIN_ROOT, REGION, LOCATIONS, UNKNOWN
+    }
+
+    private void deleteRes(ResourceResolver resourceResolver, Resource resource) throws PersistenceException {
+        resourceResolver.delete(resource);
     }
 
     private static PathType getPathType(String path) {
