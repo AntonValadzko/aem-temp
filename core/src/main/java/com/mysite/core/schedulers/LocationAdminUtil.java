@@ -1,11 +1,19 @@
 package com.mysite.core.schedulers;
 
+import com.adobe.acs.commons.util.ResourceUtil;
 import com.adobe.granite.ui.components.ds.DataSource;
 import com.adobe.granite.ui.components.ds.EmptyDataSource;
+import com.day.cq.commons.Language;
 import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.commons.jcr.JcrUtil;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.day.cq.wcm.api.WCMException;
+import org.apache.abdera.i18n.text.Sanitizer;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
@@ -18,6 +26,7 @@ import static com.day.cq.dam.api.DamConstants.MOUNTPOINT_ASSETS;
 
 public final class LocationAdminUtil {
     private static final String SLASH = "/";
+    private static final String ALLOWED_PATH_REGEXP = "[^a-zA-Z0-9/]";
     private static final String LOCATIONS_FOLDER_NAME = "/content/locations";
     private static final List<String> ALLOWED_BRANDS = List.of("avis", "budget");
     private static final String BRAND_PATH_PREFIX = "^" + MOUNTPOINT_ASSETS + SLASH + "(" + String.join("|", ALLOWED_BRANDS) + ")";
@@ -74,6 +83,28 @@ public final class LocationAdminUtil {
         return children;
     }
 
+    public void createLanguageCopy(Page page, Language language, ResourceResolver resourceResolver) throws WCMException, PersistenceException {
+        clearCopyPage(page, resourceResolver);
+    }
+
+    // Utility method: Validate paths
+    private boolean isValidPath(String path) {
+        return (path.startsWith("/content/") || path.startsWith("/apps/"))
+                && !path.contains("..") // Prevent path traversal
+                && !path.contains("//") // Prevent duplicate slashes
+                && !path.contains("@")  // Prevent invalid characters
+                && !path.contains(":"); // Avoid reserved JCR symbols
+    }
+
+    private void clearCopyPage(Page page, ResourceResolver resolver) throws PersistenceException, WCMException {
+        final String path = page.getPath() + "/test/config";
+
+        Resource liveSyncConfig = resolver.getResource(path);
+        if (Objects.nonNull(liveSyncConfig)) {
+            liveSyncConfig.getResourceResolver().delete(liveSyncConfig);
+        }
+    }
+
     public static Resource getResourceFromRequest( SlingHttpServletRequest request) {
         ResourceResolver resolver = request.getResourceResolver();
         String suffixPath = StringUtils.defaultIfBlank(request.getRequestPathInfo().getSuffix(), MOUNTPOINT_ASSETS);
@@ -117,7 +148,7 @@ public final class LocationAdminUtil {
     private static  List<Resource> getRegionsWithLocations( Resource adminFolder) {
         final ResourceResolver resourceResolver = adminFolder.getResourceResolver();
         final String adminFolderPath = replaceSingleQuotes(adminFolder.getPath());
-        final String sql2Query = String.format(FIND_REGIONS_WITH_LOCATIONS_QUERY, adminFolderPath);
+        final String sql2Query = String.format(FIND_REGIONS_WITH_LOCATIONS_QUERY, adminFolderPath.replaceAll(ALLOWED_PATH_REGEXP, StringUtils.EMPTY));
         final Iterator<Resource> resultIterator = resourceResolver.findResources(sql2Query, Query.JCR_SQL2);
         return Lists.newArrayList(resultIterator);
     }
@@ -125,7 +156,7 @@ public final class LocationAdminUtil {
     private static  List<Resource> getAllChildren( Resource parent) {
         final ResourceResolver resourceResolver = parent.getResourceResolver();
         final String parentPath = replaceSingleQuotes(parent.getPath());
-        final String sql2Query = String.format(FIND_ALL_CHILD_NODES_QUERY, parentPath);
+        final String sql2Query = String.format(FIND_ALL_CHILD_NODES_QUERY, parentPath.replaceAll(ALLOWED_PATH_REGEXP, StringUtils.EMPTY));
         final Iterator<Resource> resultIterator = resourceResolver.findResources(sql2Query, Query.JCR_SQL2);
         return Lists.newArrayList(resultIterator);
     }
