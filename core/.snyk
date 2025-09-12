@@ -172,6 +172,14 @@ ignore:
     - '* > com.adobe.acs:acs-aem-commons-bundle > *':
         reason: Waiting ACS Commons upgrade to fix
         expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:CH.QOS.LOGBACK:LOGBACK-CLASSIC:(EPL-1.0_OR_LGPL-2.1):
+    - '* > com.adobe.acs:acs-aem-commons-bundle > *':
+        reason: Waiting ACS Commons upgrade to fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:CH.QOS.LOGBACK:LOGBACK-CORE:(EPL-1.0_OR_LGPL-2.1):
+    - '* > com.adobe.acs:acs-aem-commons-bundle > *':
+        reason: Waiting ACS Commons upgrade to fix
+        expires: 2026-01-01T12:00:00.000Z
   SNYK:LIC:MAVEN:BIZ.NETCENTRIC.CQ.TOOLS.ACCESSCONTROLTOOL:ACCESSCONTROLTOOL-BUNDLE:EPL-1.0:
     - '* > biz.netcentric.cq.tools.accesscontroltool:accesscontroltool-package > *':
         reason: Licence issue fix
