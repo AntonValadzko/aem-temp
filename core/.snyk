@@ -172,11 +172,3 @@ ignore:
     - '* > com.adobe.acs:acs-aem-commons-bundle > *':
         reason: Waiting ACS Commons upgrade to fix
         expires: 2026-01-01T12:00:00.000Z
-  SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538:
-    - '* > io.wcm:io.wcm.caconfig.editor > *':
-        reason: No new version available
-        expires: 2026-01-01T12:00:00.000Z
-  SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754:
-    - '* > io.wcm:io.wcm.caconfig.editor > *':
-        reason: No new version available
-        expires: 2026-01-01T12:00:00.000Z
