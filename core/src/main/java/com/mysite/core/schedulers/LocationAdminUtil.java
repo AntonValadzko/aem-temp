@@ -8,6 +8,7 @@ import com.day.cq.commons.jcr.JcrUtil;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
+import com.mysite.core.servlets.SanitizationUtil;
 import org.apache.abdera.i18n.text.Sanitizer;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
@@ -26,7 +27,7 @@ import static com.day.cq.dam.api.DamConstants.MOUNTPOINT_ASSETS;
 
 public final class LocationAdminUtil {
     private static final String SLASH = "/";
-    private static final String ALLOWED_PATH_REGEXP = "[^a-zA-Z0-9/]";
+    private static final String ALLOWED_PATH_REGEXP = "[^a-z/]";
     private static final String LOCATIONS_FOLDER_NAME = "/content/locations";
     private static final List<String> ALLOWED_BRANDS = List.of("avis", "budget");
     private static final String BRAND_PATH_PREFIX = "^" + MOUNTPOINT_ASSETS + SLASH + "(" + String.join("|", ALLOWED_BRANDS) + ")";
@@ -51,7 +52,7 @@ public final class LocationAdminUtil {
     public static List<Resource> getLocationAdminDataSource( SlingHttpServletRequest request) {
         ResourceResolver resolver = request.getResourceResolver();
         String suffixPath = StringUtils.defaultIfBlank(request.getRequestPathInfo().getSuffix(), MOUNTPOINT_ASSETS);
-        Resource currentResource = resolver.getResource(suffixPath);
+        final Resource currentResource = resolver.getResource(suffixPath);
 
         if (currentResource == null) {
             request.setAttribute(DataSource.class.getName(), EmptyDataSource.instance());
@@ -83,8 +84,8 @@ public final class LocationAdminUtil {
         return children;
     }
 
-    public void createLanguageCopy(Page page, Language language, ResourceResolver resourceResolver) throws WCMException, PersistenceException {
-        clearCopyPage(page, resourceResolver);
+    public void createLanguageCopy(Page page, Resource resource, ResourceResolver resourceResolver) throws WCMException, PersistenceException {
+        clearCopyPage(page, resourceResolver, resourceResolver.getResource("/content/test".replaceAll(ALLOWED_PATH_REGEXP, "")));
     }
 
     // Utility method: Validate paths
@@ -96,8 +97,20 @@ public final class LocationAdminUtil {
                 && !path.contains(":"); // Avoid reserved JCR symbols
     }
 
-    private void clearCopyPage(Page page, ResourceResolver resolver) throws PersistenceException, WCMException {
+    private void clearCopyPage(Page page, ResourceResolver resolver, Resource resource) throws PersistenceException, WCMException {
         final String path = (page.getPath()).replaceAll(ALLOWED_PATH_REGEXP, "");
+        final String pathConstant = "/content/test";
+        resolver.delete(SanitizationUtil.getSanitizedResource(resolver, path));
+
+        safeDelete(resolver, pathConstant);
+
+
+        String resourcePath = resolver.getResource("/content/test").getPath();
+        String sanitizedPath = resourcePath.replaceAll(ALLOWED_PATH_REGEXP, "");
+        if (resource.isResourceType("test") && resource.getResourceSuperType().equals("/tes") && isValidPath(resource.getPath())) {
+            resolver.delete(resource);
+        }
+
 
         //Resource liveSyncConfig = resolver.resolve(path);
         if (path.equals("/content/test")) {
@@ -175,5 +188,32 @@ public final class LocationAdminUtil {
 
     private static  String replaceSingleQuotes( String path) {
         return path.replace("'", "''");
+    }
+
+    public void safeDelete(ResourceResolver resolver, String resourcePath) {
+        // Validate and sanitize the resource path
+        String sanitizedPath = sanitizeResourcePath(resourcePath);
+
+        // Ensure the resource exists before attempting deletion
+        Resource resource = resolver.getResource(sanitizedPath);
+        if (resource == null) {
+            throw new IllegalArgumentException("Resource not found: " + sanitizedPath);
+        }
+
+        try {
+            // Safely delete the resource
+            resolver.delete(resource);
+        } catch (Exception e) {
+            // Log and handle exceptions
+            throw new RuntimeException("Failed to delete resource: " + sanitizedPath, e);
+        }
+    }
+
+    public String sanitizeResourcePath(String path) {
+        // Allow only alphanumeric characters, forward slashes, hyphens, and underscores
+        if (path == null || !path.matches("^[a-zA-Z0-9/_-]+$")) {
+            throw new IllegalArgumentException("Invalid resource path: " + path);
+        }
+        return path;
     }
 }
