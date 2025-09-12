@@ -1,5 +1,13 @@
 version: v1.25.0
 ignore:
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538:
+    - '*':
+        reason: Waiting ACS Commons and CaConfig upgrade to fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754:
+    - '*':
+        reason: Waiting ACS Commons and CaConfig upgrade to fix
+        expires: 2026-01-01T12:00:00.000Z
   SNYK-JAVA-CHQOSLOGBACK-1726923:
     - '* > com.adobe.acs:acs-aem-commons-bundle > *':
         reason: Waiting ACS Commons upgrade to fix
@@ -48,15 +56,7 @@ ignore:
     - '* > com.adobe.acs:acs-aem-commons-bundle > *':
         reason: Waiting ACS Commons upgrade to fix
         expires: 2026-01-01T12:00:00.000Z
-  SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538:
-    - '* > com.adobe.acs:acs-aem-commons-bundle > *':
-        reason: Waiting ACS Commons upgrade to fix
-        expires: 2026-01-01T12:00:00.000Z
   SNYK-JAVA-COMFASTERXMLJACKSONDATAFORMAT-1047329:
-    - '* > com.adobe.acs:acs-aem-commons-bundle > *':
-        reason: Waiting ACS Commons upgrade to fix
-        expires: 2026-01-01T12:00:00.000Z
-  SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754:
     - '* > com.adobe.acs:acs-aem-commons-bundle > *':
         reason: Waiting ACS Commons upgrade to fix
         expires: 2026-01-01T12:00:00.000Z
@@ -171,4 +171,24 @@ ignore:
   SNYK-JAVA-XERCES-5920442:
     - '* > com.adobe.acs:acs-aem-commons-bundle > *':
         reason: Waiting ACS Commons upgrade to fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:BIZ.NETCENTRIC.CQ.TOOLS.ACCESSCONTROLTOOL:ACCESSCONTROLTOOL-BUNDLE:EPL-1.0:
+    - '* > biz.netcentric.cq.tools.accesscontroltool:accesscontroltool-package > *':
+        reason: Licence issue fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:BIZ.NETCENTRIC.CQ.TOOLS.ACCESSCONTROLTOOL:ACCESSCONTROLTOOL-APPS-PACKAGE:EPL-1.0:
+    - '* > biz.netcentric.cq.tools.accesscontroltool:accesscontroltool-package > *':
+        reason: Licence issue fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:BIZ.NETCENTRIC.CQ.TOOLS.ACCESSCONTROLTOOL:ACCESSCONTROLTOOL-CONTENT-PACKAGE:EPL-1.0:
+    - '* > biz.netcentric.cq.tools.accesscontroltool:accesscontroltool-package > *':
+        reason: Licence issue fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:BIZ.NETCENTRIC.CQ.TOOLS.ACCESSCONTROLTOOL:ACCESSCONTROLTOOL-PACKAGE:EPL-1.0:
+    - '* > biz.netcentric.cq.tools.accesscontroltool:accesscontroltool-package > *':
+        reason: Licence issue fix
+        expires: 2026-01-01T12:00:00.000Z
+  SNYK:LIC:MAVEN:BIZ.NETCENTRIC.CQ.TOOLS.ACCESSCONTROLTOOL:ACCESSCONTROLTOOL-STARTUPHOOK-BUNDLE:EPL-1.0:
+    - '* > biz.netcentric.cq.tools.accesscontroltool:accesscontroltool-package > *':
+        reason: Licence issue fix
         expires: 2026-01-01T12:00:00.000Z
