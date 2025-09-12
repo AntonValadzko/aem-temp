@@ -1,4 +1,4 @@
-version: v1.25.0
+version: v1.25.1
 ignore:
   SNYK-JAVA-CHQOSLOGBACK-1726923:
     - com.adobe.acs:acs-aem-commons-bundle:
