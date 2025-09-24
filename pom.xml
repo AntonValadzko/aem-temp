@@ -39,7 +39,7 @@
     <bnd.version>6.4.0</bnd.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <aem.sdk.api>2025.8.21994.20250818T175115Z-250800</aem.sdk.api>
+    <aem.sdk.api>2025.8.22171.20250828T220440Z-250800</aem.sdk.api>
     <aemanalyser.version>1.6.6</aemanalyser.version>
     <componentGroupName>My Site</componentGroupName>
       <acs.aem.commons.version>6.14.0</acs.aem.commons.version>
